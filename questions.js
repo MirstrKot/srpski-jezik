@@ -114,14 +114,70 @@ const QUESTIONS = [
   { id: 94, sentence: "Mislim o ___ ___.",                  placeholders: ["lepo",      "vreme"],     answers: ["lepom",      "vremenu"]     },
 
   // === MNOŽINA — nominativ ===
-  { id: 95, sentence: "___ ___ su stigli na vreme.",        placeholders: ["novi",   "student"],     answers: ["novi",   "studenti"]    },
-  { id: 96, sentence: "___ ___ su lepe.",                   placeholders: ["star",   "ulica (mn.)"], answers: ["stare",  "ulice"]       },
+  { id: 95,  sentence: "___ ___ su stigli na vreme.",           placeholders: ["nov",       "student"],      answers: ["novi",       "studenti"]      },
+  { id: 96,  sentence: "___ ___ su bile lepe.",                 placeholders: ["star",      "pesma"],        answers: ["stare",      "pesme"]         },
+  { id: 97,  sentence: "___ ___ leže na stolu.",                placeholders: ["kratak",    "pismo"],        answers: ["kratka",     "pisma"]         },
+  { id: 98,  sentence: "___ ___ su skupi ove godine.",          placeholders: ["dobar",     "restoran"],     answers: ["dobri",      "restorani"]     },
+  { id: 99,  sentence: "___ ___ su pali u jesen.",              placeholders: ["žut",       "list"],         answers: ["žuti",       "listovi"]       },
+  { id: 100, sentence: "___ ___ su otvorene svaki dan.",        placeholders: ["mali",      "prodavnica"],   answers: ["male",       "prodavnice"]    },
+  { id: 101, sentence: "___ ___ su bila prazna zimi.",          placeholders: ["planinsko", "selo"],         answers: ["planinska",  "sela"]          },
+  { id: 102, sentence: "___ ___ su brzi i jaki.",               placeholders: ["mlad",      "igrač"],        answers: ["mladi",      "igrači"]        },
+  { id: 103, sentence: "___ ___ su bili tihi.",                 placeholders: ["star",      "pas"],          answers: ["stari",      "psi"]           },
+  { id: 104, sentence: "___ ___ su bile pune.",                 placeholders: ["veliki",    "učionica"],     answers: ["velike",     "učionice"]      },
 
   // === MNOŽINA — akuzativ ===
-  { id: 97, sentence: "Kupujem ___ ___.",                   placeholders: ["nova",   "knjiga (mn.)"], answers: ["nove",   "knjige"]      },
-  { id: 98, sentence: "Gledam ___ ___ na nebu.",            placeholders: ["beo",    "oblak (mn.)"],  answers: ["bele",   "oblake"]      },
+  { id: 105, sentence: "Vidim ___ ___ na prozoru.",             placeholders: ["beo",        "golub"],        answers: ["bele",       "golubove"]      },
+  { id: 106, sentence: "Čitam ___ ___ svaki dan.",              placeholders: ["zanimljiv",  "članak"],       answers: ["zanimljive", "članke"]        },
+  { id: 107, sentence: "Volim ___ ___.",                        placeholders: ["star",       "film"],         answers: ["stare",      "filmove"]       },
+  { id: 108, sentence: "Kupujem ___ ___.",                      placeholders: ["crven",      "jabuka"],       answers: ["crvene",     "jabuke"]        },
+  { id: 109, sentence: "Gledam ___ ___ na utakmici.",           placeholders: ["mlad",       "igrač"],        answers: ["mlade",      "igrače"]        },
+  { id: 110, sentence: "Imam ___ ___ kod kuće.",                placeholders: ["dobra",      "knjiga"],       answers: ["dobre",      "knjige"]        },
+  { id: 111, sentence: "Posetio sam ___ ___ u Evropi.",         placeholders: ["velik",      "grad"],         answers: ["velike",     "gradove"]       },
+  { id: 112, sentence: "Volim ___ ___.",                        placeholders: ["tiho",       "jutro"],        answers: ["tiha",       "jutra"]         },
+  { id: 113, sentence: "Jedemo ___ ___ svaki dan.",             placeholders: ["svež",       "salata"],       answers: ["sveže",      "salate"]        },
+  { id: 114, sentence: "Gledam ___ ___ na stadionu.",           placeholders: ["dobar",      "utakmica"],     answers: ["dobre",      "utakmice"]      },
 
-  // === MNOŽINA — genitiv, dativ, instrumental, lokativ ===
-  { id: 99,  sentence: "Nema ___ ___ u gradu.",             placeholders: ["dobar",  "restoran (mn.)"], answers: ["dobrih",  "restorana"]   },
-  { id: 100, sentence: "Mislim o ___ ___.",                 placeholders: ["prošli", "dan (mn.)"],      answers: ["prošlim", "danima"]      },
+  // === MNOŽINA — genitiv ===
+  { id: 115, sentence: "Nema ___ ___ na tržištu.",              placeholders: ["dobar",  "posao (mn.)"],      answers: ["dobrih",  "poslova"]         },
+  { id: 116, sentence: "Kupio je puno ___ ___.",                placeholders: ["nov",    "knjiga (mn.)"],     answers: ["novih",   "knjiga"]          },
+  { id: 117, sentence: "Ima mnogo ___ ___ u gradu.",            placeholders: ["velik",  "zgrada (mn.)"],     answers: ["velikih", "zgrada"]          },
+  { id: 118, sentence: "Nema ___ ___ u školi.",                 placeholders: ["dobar",  "učenik (mn.)"],     answers: ["dobrih",  "učenika"]         },
+  { id: 119, sentence: "Vidim puno ___ ___ na nebu.",           placeholders: ["siv",    "oblak (mn.)"],      answers: ["sivih",   "oblaka"]          },
+  { id: 120, sentence: "Imam dosta ___ ___ kod kuće.",          placeholders: ["star",   "stvar (mn.)"],      answers: ["starih",  "stvari"]          },
+  { id: 121, sentence: "Nema ___ ___ u ovom gradu.",            placeholders: ["dobar",  "kafić (mn.)"],      answers: ["dobrih",  "kafića"]          },
+  { id: 122, sentence: "Kupio je kilogram ___ ___.",            placeholders: ["svež",   "paradajz (mn.)"],   answers: ["svežih",  "paradajza"]       },
+  { id: 123, sentence: "Nema više ___ ___ na lageru.",          placeholders: ["nov",    "model (mn.)"],      answers: ["novih",   "modela"]          },
+  { id: 124, sentence: "Ima puno ___ ___ na sajmu.",            placeholders: ["velik",  "štand (mn.)"],      answers: ["velikih", "štandova"]        },
+
+  // === MNOŽINA — dativ ===
+  { id: 125, sentence: "Pišem ___ ___.",                        placeholders: ["drag",   "roditelj (mn.)"],   answers: ["dragim",  "roditeljima"]     },
+  { id: 126, sentence: "Govorim ___ ___ istinu.",               placeholders: ["mlad",   "student (mn.)"],    answers: ["mladim",  "studentima"]      },
+  { id: 127, sentence: "Dajem ___ ___ nagradu.",                placeholders: ["dobar",  "učenik (mn.)"],     answers: ["dobrim",  "učenicima"]       },
+  { id: 128, sentence: "Zahvaljujem se ___ ___ na podršci.",    placeholders: ["dobar",  "prijatelj (mn.)"],  answers: ["dobrim",  "prijateljima"]    },
+  { id: 129, sentence: "Poklanjam knjige ___ ___.",             placeholders: ["mlad",   "kolega (mn.)"],     answers: ["mladim",  "kolegama"]        },
+  { id: 130, sentence: "Pomažem ___ ___ u učenju.",             placeholders: ["slab",   "učenik (mn.)"],     answers: ["slabim",  "učenicima"]       },
+  { id: 131, sentence: "Čestitam ___ ___ na pobedi.",           placeholders: ["dobar",  "pobednik (mn.)"],   answers: ["dobrim",  "pobednicima"]     },
+  { id: 132, sentence: "Šaljem mejl ___ ___.",                  placeholders: ["nov",    "zaposleni (mn.)"],  answers: ["novim",   "zaposlenima"]     },
+
+  // === MNOŽINA — instrumental ===
+  { id: 133, sentence: "Razgovaram sa ___ ___.",                placeholders: ["dobar",   "student (mn.)"],   answers: ["dobrim",    "studentima"]    },
+  { id: 134, sentence: "Putovao je sa ___ ___.",                placeholders: ["mlad",    "prijatelj (mn.)"], answers: ["mladim",    "prijateljima"]  },
+  { id: 135, sentence: "Upoznao sam se sa ___ ___.",            placeholders: ["nov",     "kolega (mn.)"],    answers: ["novim",     "kolegama"]      },
+  { id: 136, sentence: "Igra se sa ___ ___.",                   placeholders: ["mali",    "drug (mn.)"],      answers: ["malim",     "drugovima"]     },
+  { id: 137, sentence: "Bori se sa ___ ___.",                   placeholders: ["velik",   "problem (mn.)"],   answers: ["velikim",   "problemima"]    },
+  { id: 138, sentence: "Deli sobu sa ___ ___.",                 placeholders: ["dobar",   "cimer (mn.)"],     answers: ["dobrim",    "cimerima"]      },
+  { id: 139, sentence: "Bavi se ___ ___.",                      placeholders: ["različit","sport (mn.)"],     answers: ["različitim","sportovima"]    },
+  { id: 140, sentence: "Radi sa ___ ___.",                      placeholders: ["mlad",    "lekar (mn.)"],     answers: ["mladim",    "lekarima"]      },
+
+  // === MNOŽINA — lokativ ===
+  { id: 141, sentence: "Pričam o ___ ___.",                     placeholders: ["star",    "film (mn.)"],      answers: ["starim",    "filmovima"]     },
+  { id: 142, sentence: "Učimo o ___ ___.",                      placeholders: ["stara",   "civilizacija (mn.)"], answers: ["starim", "civilizacijama"] },
+  { id: 143, sentence: "Bio sam na ___ ___.",                   placeholders: ["razni",   "put (mn.)"],       answers: ["raznim",    "putevima"]      },
+  { id: 144, sentence: "Mislim o ___ ___.",                     placeholders: ["dobar",   "vreme (mn.)"],     answers: ["dobrim",    "vremenima"]     },
+  { id: 145, sentence: "Govorimo o ___ ___.",                   placeholders: ["mlad",    "glumac (mn.)"],    answers: ["mladim",    "glumcima"]      },
+  { id: 146, sentence: "Pričamo o ___ ___.",                    placeholders: ["star",    "dan (mn.)"],       answers: ["starim",    "danima"]        },
+  { id: 147, sentence: "Radio je u ___ ___.",                   placeholders: ["velik",   "grad (mn.)"],      answers: ["velikim",   "gradovima"]     },
+  { id: 148, sentence: "Govori o ___ ___.",                     placeholders: ["stran",   "zemlja (mn.)"],    answers: ["stranim",   "zemljama"]      },
+  { id: 149, sentence: "Mislim o ___ ___.",                     placeholders: ["star",    "prijatelj (mn.)"], answers: ["starim",    "prijateljima"]  },
+  { id: 150, sentence: "Pričamo o ___ ___.",                    placeholders: ["nov",     "projekt (mn.)"],   answers: ["novim",     "projektima"]    },
 ];
