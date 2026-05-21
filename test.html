@@ -57,9 +57,7 @@
     padding-top: 1px;
   }
 
-  .q-part {
-    white-space: pre-wrap;
-  }
+  .q-part { white-space: pre-wrap; }
 
   .answer-input {
     border: none;
@@ -75,9 +73,7 @@
     vertical-align: baseline;
   }
 
-  .answer-input:focus {
-    border-bottom-color: #555;
-  }
+  .answer-input:focus { border-bottom-color: #555; }
 
   .answer-input.correct {
     border-bottom-color: #43a047;
@@ -93,7 +89,6 @@
     border-radius: 3px 3px 0 0;
   }
 
-  /* Fixed-width slot at end of line so layout never shifts */
   .tip-slot {
     display: inline-flex;
     align-items: center;
@@ -121,9 +116,7 @@
     flex-shrink: 0;
   }
 
-  .tip-btn.show {
-    display: inline-block;
-  }
+  .tip-btn.show { display: inline-block; }
 
   .tip-btn:hover::after {
     content: attr(data-tip);
@@ -174,14 +167,8 @@
     transition: background 0.15s;
   }
 
-  #action-btn:hover:not(:disabled) {
-    background: #2c4770;
-  }
-
-  #action-btn:disabled {
-    background: #aaa;
-    cursor: default;
-  }
+  #action-btn:hover:not(:disabled) { background: #2c4770; }
+  #action-btn:disabled { background: #aaa; cursor: default; }
 
   #clear-btn {
     padding: 10px 18px;
@@ -196,10 +183,7 @@
     transition: color 0.15s, border-color 0.15s;
   }
 
-  #clear-btn:hover {
-    color: #e53935;
-    border-color: #e53935;
-  }
+  #clear-btn:hover { color: #e53935; border-color: #e53935; }
 
   #done-msg {
     display: none;
@@ -210,6 +194,203 @@
     font-size: 1.05rem;
     margin-bottom: 20px;
   }
+
+  /* ===== EASTER EGG ===== */
+
+  #egg-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 20, 0.92);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: eggFadeIn 0.6s ease forwards;
+  }
+
+  @keyframes eggFadeIn { to { opacity: 1; } }
+
+  #fw-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  #diploma {
+    position: relative;
+    z-index: 2;
+    transform: scale(0.1) rotate(-8deg);
+    opacity: 0;
+    animation: diplomaPop 0.7s 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes diplomaPop {
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .dip-outer {
+    background: #fdf6e3;
+    border: 4px double #b8960c;
+    padding: 6px;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #e6c84a, 0 30px 80px rgba(0,0,0,0.7), inset 0 0 40px rgba(200,160,0,0.06);
+  }
+
+  .dip-inner {
+    border: 1px solid #d4a50a;
+    padding: 32px 44px 28px;
+    text-align: center;
+    min-width: 360px;
+    max-width: 480px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(200,160,0,0.03) 40px,
+      rgba(200,160,0,0.03) 41px
+    );
+  }
+
+  .dip-ornament {
+    color: #c9a227;
+    font-size: 1rem;
+    letter-spacing: 10px;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+
+  .dip-title {
+    font-size: 1.9rem;
+    letter-spacing: 14px;
+    color: #4a2c00;
+    font-weight: normal;
+    margin: 0 0 4px;
+    font-family: Georgia, serif;
+    text-shadow: 1px 1px 0 rgba(200,160,0,0.3);
+  }
+
+  .dip-rule {
+    border: none;
+    border-top: 1px solid #d4a50a;
+    margin: 10px auto;
+    width: 80%;
+    opacity: 0.5;
+  }
+
+  .dip-confirms {
+    font-size: 0.78rem;
+    color: #888;
+    font-style: italic;
+    margin: 8px 0 14px;
+    letter-spacing: 0.04em;
+  }
+
+  .dip-rank {
+    font-size: 1.55rem;
+    color: #7a1010;
+    font-family: Georgia, serif;
+    margin: 4px 0 12px;
+    line-height: 1.3;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .dip-stats {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  .dip-stats strong { color: #666; }
+
+  /* kolo dance — figures bob up/down alternately */
+  .kolo {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    font-size: 1.55rem;
+    margin: 14px 0 10px;
+    line-height: 1;
+  }
+
+  .kolo span { display: inline-block; animation: koloBob 0.45s ease-in-out infinite alternate; }
+  .kolo span:nth-child(even) { animation-direction: alternate-reverse; }
+  .kolo span:nth-child(3n)   { animation-duration: 0.55s; }
+
+  @keyframes koloBob {
+    from { transform: translateY(0) scaleX(1); }
+    to   { transform: translateY(-7px) scaleX(0.95); }
+  }
+
+  .dip-quote {
+    font-size: 1.05rem;
+    color: #4a2c00;
+    font-style: italic;
+    margin: 6px 0 18px;
+    letter-spacing: 0.03em;
+  }
+
+  .dip-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  .dip-seal {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #e6c84a, #8b6514);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+    animation: sealSpin 8s linear infinite;
+  }
+
+  @keyframes sealSpin {
+    from { filter: hue-rotate(0deg); }
+    to   { filter: hue-rotate(40deg); }
+  }
+
+  .dip-date {
+    font-size: 0.75rem;
+    color: #aaa;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .dip-close {
+    display: block;
+    margin: 20px auto 0;
+    padding: 9px 28px;
+    background: #3d5a80;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+  }
+
+  .dip-close:hover { background: #2c4770; }
+
+  /* Corner ornaments */
+  .dip-inner::before,
+  .dip-inner::after {
+    content: '✦';
+    display: block;
+    color: #d4a50a;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+  .dip-inner::after { margin-top: 16px; }
 </style>
 </head>
 <body>
@@ -227,13 +408,13 @@
 <script src="questions.js"></script>
 <script>
 (function () {
-  const STORAGE_KEY = 'srpski_correct_ids';
+  const STORAGE_KEY   = 'srpski_correct_ids';
+  const ROUNDS_KEY    = 'srpski_rounds';
   const BATCH = 10;
 
   let currentBatch = [];
   let checked = false;
 
-  // --- Storage helpers ---
   function getCorrect() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
     catch { return []; }
@@ -244,11 +425,19 @@
     if (!ids.includes(id)) { ids.push(id); localStorage.setItem(STORAGE_KEY, JSON.stringify(ids)); }
   }
 
-  function clearHistory() {
-    localStorage.removeItem(STORAGE_KEY);
+  function getRounds() {
+    return parseInt(localStorage.getItem(ROUNDS_KEY) || '0');
   }
 
-  // --- Question pool ---
+  function incRounds() {
+    localStorage.setItem(ROUNDS_KEY, getRounds() + 1);
+  }
+
+  function clearHistory() {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(ROUNDS_KEY);
+  }
+
   function available() {
     const done = getCorrect();
     return QUESTIONS.filter(q => !done.includes(q.id));
@@ -258,13 +447,11 @@
     return [...arr].sort(() => Math.random() - 0.5).slice(0, n);
   }
 
-  // --- Input auto-width ---
   function sizeInput(input) {
     const len = Math.max((input.value || input.placeholder).length, 4);
     input.style.width = (len * 0.62 + 0.8) + 'em';
   }
 
-  // --- Render ---
   function renderBatch(batch) {
     const container = document.getElementById('quiz-container');
     container.innerHTML = '';
@@ -274,13 +461,11 @@
       li.className = 'q-row';
       li.dataset.qid = q.id;
 
-      // Number
       const num = document.createElement('span');
       num.className = 'q-num';
       num.textContent = (idx + 1) + '.';
       li.appendChild(num);
 
-      // Sentence parts + inputs
       const parts = q.sentence.split('___');
       const inputs = [];
 
@@ -314,7 +499,6 @@
         }
       });
 
-      // Tooltip slot (fixed width — always present to prevent layout shift)
       const slot = document.createElement('span');
       slot.className = 'tip-slot';
       const tipBtn = document.createElement('button');
@@ -329,14 +513,13 @@
       container.appendChild(li);
     });
 
-    // Focus first input
     const first = container.querySelector('.answer-input');
     if (first) first.focus();
   }
 
-  // --- Check ---
   function checkAnswers() {
     checked = true;
+    incRounds();
     const rows = document.querySelectorAll('.q-row');
 
     rows.forEach(row => {
@@ -370,21 +553,21 @@
     updateUI(true);
   }
 
-  // --- Load next batch ---
   function loadBatch() {
     checked = false;
     const pool = available();
     updateProgress();
     updateClearBtn();
 
-    const doneMsg = document.getElementById('done-msg');
+    const doneMsg  = document.getElementById('done-msg');
     const actionBtn = document.getElementById('action-btn');
 
     if (pool.length === 0) {
       document.getElementById('quiz-container').innerHTML = '';
-      doneMsg.style.display = 'block';
+      doneMsg.style.display = 'none';
       actionBtn.style.display = 'none';
       updateClearBtn();
+      showEasterEgg();
       return;
     }
 
@@ -397,15 +580,12 @@
     renderBatch(currentBatch);
   }
 
-  // --- UI state after check ---
   function updateUI(afterCheck) {
     const pool = available();
     const actionBtn = document.getElementById('action-btn');
     updateClearBtn();
     updateProgress();
-
     if (!afterCheck) return;
-
     if (pool.length === 0) {
       actionBtn.textContent = 'Gotovo!';
       actionBtn.disabled = true;
@@ -428,7 +608,145 @@
       getCorrect().length > 0 ? 'inline-block' : 'none';
   }
 
-  // --- Event listeners ---
+  // ===== EASTER EGG =====
+
+  function showEasterEgg() {
+    const rounds = getRounds();
+    const total  = QUESTIONS.length;
+    const now    = new Date();
+    const dateStr = now.toLocaleDateString('sr-Latn', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    const overlay = document.createElement('div');
+    overlay.id = 'egg-overlay';
+
+    const canvas = document.createElement('canvas');
+    canvas.id = 'fw-canvas';
+    overlay.appendChild(canvas);
+
+    overlay.innerHTML += `
+      <div id="diploma">
+        <div class="dip-outer">
+          <div class="dip-inner">
+            <div class="dip-ornament">— ✦ —</div>
+            <h2 class="dip-title">D I P L O M A</h2>
+            <hr class="dip-rule">
+            <p class="dip-confirms">Ovim se potvrđuje da je posednik ove diplome</p>
+            <div class="dip-rank">Majstor Srpskog Padeža</div>
+            <p class="dip-stats">
+              Savladano svih <strong>${total} primera</strong> iz svih padeža<br>
+              za <strong>${rounds} ${roundWord(rounds)}</strong>
+            </p>
+            <div class="kolo">
+              <span>🕺</span><span>💃</span><span>🕺</span><span>💃</span><span>🕺</span><span>💃</span><span>🕺</span><span>💃</span>
+            </div>
+            <p class="dip-quote">„Svaka čast!"</p>
+            <div class="dip-bottom">
+              <div class="dip-seal">✦</div>
+              <div class="dip-date">Srpski jezik<br>${dateStr}</div>
+            </div>
+            <button class="dip-close" id="dip-close-btn">Zatvori</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    // Re-grab canvas after innerHTML
+    const fw = overlay.querySelector('#fw-canvas');
+    launchFireworks(fw);
+
+    overlay.querySelector('#dip-close-btn').addEventListener('click', () => {
+      overlay.remove();
+      document.getElementById('done-msg').style.display = 'block';
+      document.getElementById('footer').style.display = 'flex';
+      updateClearBtn();
+    });
+  }
+
+  function roundWord(n) {
+    if (n % 10 === 1 && n % 100 !== 11) return 'krug';
+    if ([2,3,4].includes(n % 10) && ![12,13,14].includes(n % 100)) return 'kruga';
+    return 'krugova';
+  }
+
+  function launchFireworks(canvas) {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const COLORS = [
+      '#ff4444','#ff8844','#ffdd00','#aaff44','#44ffaa',
+      '#44aaff','#8844ff','#ff44cc','#ffffff','#ffd700'
+    ];
+
+    function burst(x, y) {
+      const baseColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+      const count = 55 + Math.floor(Math.random() * 25);
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 / count) * i + Math.random() * 0.3;
+        const speed = Math.random() * 5.5 + 1.5;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 2,
+          color: Math.random() < 0.2 ? COLORS[Math.floor(Math.random() * COLORS.length)] : baseColor,
+          alpha: 1,
+          radius: Math.random() * 2.8 + 0.8,
+          gravity: 0.07 + Math.random() * 0.05,
+          flicker: Math.random() < 0.4,
+        });
+      }
+    }
+
+    // Scheduled bursts — avoid the diploma area (center)
+    const W = canvas.width, H = canvas.height;
+    const schedule = [
+      [50,  W * 0.15, H * 0.25],
+      [200, W * 0.85, H * 0.20],
+      [400, W * 0.08, H * 0.55],
+      [600, W * 0.92, H * 0.50],
+      [800, W * 0.20, H * 0.15],
+      [1000,W * 0.80, H * 0.30],
+      [1300,W * 0.10, H * 0.35],
+      [1500,W * 0.90, H * 0.65],
+    ];
+    schedule.forEach(([delay, x, y]) => setTimeout(() => burst(x, y), delay));
+
+    // Ongoing random bursts on the sides
+    const interval = setInterval(() => {
+      if (!document.getElementById('egg-overlay')) { clearInterval(interval); return; }
+      const side = Math.random() < 0.5;
+      burst(
+        side ? Math.random() * W * 0.25 : W * 0.75 + Math.random() * W * 0.25,
+        Math.random() * H * 0.6
+      );
+    }, 700);
+
+    function animate() {
+      if (!document.getElementById('egg-overlay')) return;
+      ctx.clearRect(0, 0, W, H);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x  += p.vx;
+        p.y  += p.vy;
+        p.vy += p.gravity;
+        p.vx *= 0.985;
+        p.alpha -= p.flicker ? 0.013 + Math.random() * 0.008 : 0.013;
+        if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // ===== Event listeners =====
   document.getElementById('action-btn').addEventListener('click', () => {
     if (!checked) checkAnswers();
     else loadBatch();
@@ -441,7 +759,6 @@
     }
   });
 
-  // --- Start ---
   loadBatch();
 })();
 </script>
