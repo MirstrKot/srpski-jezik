@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srpski jezik — test padeža</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    max-width: 780px;
+    margin: 40px auto;
+    padding: 0 24px 60px;
+    background: #f8f7f4;
+    color: #1a1a1a;
+    line-height: 1.9;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+    font-weight: normal;
+    border-bottom: 2px solid #d0cdc7;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+    color: #222;
+    letter-spacing: 0.02em;
+  }
+
+  #progress {
+    font-size: 0.82rem;
+    color: #999;
+    margin-bottom: 24px;
+  }
+
+  #quiz-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .q-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0 3px;
+    margin: 10px 0;
+    padding: 6px 0;
+    border-bottom: 1px solid #ebe9e4;
+  }
+
+  .q-num {
+    min-width: 26px;
+    font-size: 0.8rem;
+    color: #bbb;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .q-part {
+    white-space: pre-wrap;
+  }
+
+  .answer-input {
+    border: none;
+    border-bottom: 2px solid #b0aaa0;
+    background: transparent;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #111;
+    padding: 0 3px 1px;
+    outline: none;
+    min-width: 52px;
+    transition: border-color 0.15s;
+    vertical-align: baseline;
+  }
+
+  .answer-input:focus {
+    border-bottom-color: #555;
+  }
+
+  .answer-input.correct {
+    border-bottom-color: #43a047;
+    color: #2e7d32;
+    background: #f0faf0;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .answer-input.wrong {
+    border-bottom-color: #e53935;
+    color: #b71c1c;
+    background: #fff5f5;
+    border-radius: 3px 3px 0 0;
+  }
+
+  /* Fixed-width slot at end of line so layout never shifts */
+  .tip-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    flex-shrink: 0;
+    margin-left: 6px;
+  }
+
+  .tip-btn {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e53935;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: bold;
+    border: none;
+    cursor: default;
+    position: relative;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .tip-btn.show {
+    display: inline-block;
+  }
+
+  .tip-btn:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #222;
+    color: #fff;
+    padding: 5px 11px;
+    border-radius: 5px;
+    font-size: 0.88rem;
+    font-family: Georgia, serif;
+    white-space: nowrap;
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  .tip-btn:hover::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-right-color: #222;
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  #footer {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #action-btn {
+    padding: 10px 26px;
+    background: #3d5a80;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.97rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  #action-btn:hover:not(:disabled) {
+    background: #2c4770;
+  }
+
+  #action-btn:disabled {
+    background: #aaa;
+    cursor: default;
+  }
+
+  #clear-btn {
+    padding: 10px 18px;
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: none;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  #clear-btn:hover {
+    color: #e53935;
+    border-color: #e53935;
+  }
+
+  #done-msg {
+    display: none;
+    padding: 22px 28px;
+    background: #e8f5e9;
+    border-radius: 8px;
+    color: #2e7d32;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Srpski jezik — test padeža</h1>
+<div id="progress"></div>
+<ol id="quiz-container"></ol>
+<div id="done-msg">Odlično! Tačno ste odgovorili na sva pitanja. Možete obrisati istoriju da počnete iznova.</div>
+
+<div id="footer">
+  <button id="action-btn">Proveri rezultate</button>
+  <button id="clear-btn">Obriši istoriju</button>
+</div>
+
+<script src="questions.js"></script>
+<script>
+(function () {
+  const STORAGE_KEY = 'srpski_correct_ids';
+  const BATCH = 10;
+
+  let currentBatch = [];
+  let checked = false;
+
+  // --- Storage helpers ---
+  function getCorrect() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function markCorrect(id) {
+    const ids = getCorrect();
+    if (!ids.includes(id)) { ids.push(id); localStorage.setItem(STORAGE_KEY, JSON.stringify(ids)); }
+  }
+
+  function clearHistory() {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  // --- Question pool ---
+  function available() {
+    const done = getCorrect();
+    return QUESTIONS.filter(q => !done.includes(q.id));
+  }
+
+  function pickRandom(arr, n) {
+    return [...arr].sort(() => Math.random() - 0.5).slice(0, n);
+  }
+
+  // --- Input auto-width ---
+  function sizeInput(input) {
+    const len = Math.max((input.value || input.placeholder).length, 4);
+    input.style.width = (len * 0.62 + 0.8) + 'em';
+  }
+
+  // --- Render ---
+  function renderBatch(batch) {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+
+    batch.forEach((q, idx) => {
+      const li = document.createElement('li');
+      li.className = 'q-row';
+      li.dataset.qid = q.id;
+
+      // Number
+      const num = document.createElement('span');
+      num.className = 'q-num';
+      num.textContent = (idx + 1) + '.';
+      li.appendChild(num);
+
+      // Sentence parts + inputs
+      const parts = q.sentence.split('___');
+      const inputs = [];
+
+      parts.forEach((part, i) => {
+        if (part) {
+          const sp = document.createElement('span');
+          sp.className = 'q-part';
+          sp.textContent = part;
+          li.appendChild(sp);
+        }
+        if (i < parts.length - 1) {
+          const inp = document.createElement('input');
+          inp.type = 'text';
+          inp.className = 'answer-input';
+          inp.placeholder = q.placeholders[i] || '';
+          inp.autocomplete = 'off';
+          inp.autocorrect = 'off';
+          inp.spellcheck = false;
+          sizeInput(inp);
+          inp.addEventListener('input', () => sizeInput(inp));
+          inp.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              const all = Array.from(document.querySelectorAll('.answer-input:not(:disabled)'));
+              const next = all[all.indexOf(inp) + 1];
+              if (next) next.focus(); else document.getElementById('action-btn').click();
+            }
+          });
+          inputs.push(inp);
+          li.appendChild(inp);
+        }
+      });
+
+      // Tooltip slot (fixed width — always present to prevent layout shift)
+      const slot = document.createElement('span');
+      slot.className = 'tip-slot';
+      const tipBtn = document.createElement('button');
+      tipBtn.className = 'tip-btn';
+      tipBtn.textContent = '?';
+      tipBtn.type = 'button';
+      slot.appendChild(tipBtn);
+      li.appendChild(slot);
+
+      li._inputs = inputs;
+      li._tipBtn = tipBtn;
+      container.appendChild(li);
+    });
+
+    // Focus first input
+    const first = container.querySelector('.answer-input');
+    if (first) first.focus();
+  }
+
+  // --- Check ---
+  function checkAnswers() {
+    checked = true;
+    const rows = document.querySelectorAll('.q-row');
+
+    rows.forEach(row => {
+      const id = parseInt(row.dataset.qid);
+      const q = QUESTIONS.find(x => x.id === id);
+      const inputs = row._inputs;
+      let allOk = true;
+      const wrong = [];
+
+      inputs.forEach((inp, i) => {
+        const user = inp.value.trim().toLowerCase();
+        const correct = q.answers[i].toLowerCase();
+        inp.disabled = true;
+        if (user === correct) {
+          inp.classList.add('correct');
+        } else {
+          inp.classList.add('wrong');
+          allOk = false;
+          wrong.push(q.answers[i]);
+        }
+      });
+
+      if (allOk) {
+        markCorrect(id);
+      } else {
+        row._tipBtn.setAttribute('data-tip', wrong.join(' / '));
+        row._tipBtn.classList.add('show');
+      }
+    });
+
+    updateUI(true);
+  }
+
+  // --- Load next batch ---
+  function loadBatch() {
+    checked = false;
+    const pool = available();
+    updateProgress();
+    updateClearBtn();
+
+    const doneMsg = document.getElementById('done-msg');
+    const actionBtn = document.getElementById('action-btn');
+
+    if (pool.length === 0) {
+      document.getElementById('quiz-container').innerHTML = '';
+      doneMsg.style.display = 'block';
+      actionBtn.style.display = 'none';
+      updateClearBtn();
+      return;
+    }
+
+    doneMsg.style.display = 'none';
+    actionBtn.style.display = 'inline-block';
+    actionBtn.textContent = 'Proveri rezultate';
+    actionBtn.disabled = false;
+
+    currentBatch = pickRandom(pool, Math.min(BATCH, pool.length));
+    renderBatch(currentBatch);
+  }
+
+  // --- UI state after check ---
+  function updateUI(afterCheck) {
+    const pool = available();
+    const actionBtn = document.getElementById('action-btn');
+    updateClearBtn();
+    updateProgress();
+
+    if (!afterCheck) return;
+
+    if (pool.length === 0) {
+      actionBtn.textContent = 'Gotovo!';
+      actionBtn.disabled = true;
+    } else {
+      actionBtn.textContent = 'Još ' + Math.min(BATCH, pool.length) + ' primera';
+    }
+  }
+
+  function updateProgress() {
+    const total = QUESTIONS.length;
+    const done = total - available().length;
+    const el = document.getElementById('progress');
+    el.textContent = done > 0
+      ? 'Tačno odgovoreno: ' + done + ' / ' + total
+      : 'Ukupno primera: ' + total;
+  }
+
+  function updateClearBtn() {
+    document.getElementById('clear-btn').style.display =
+      getCorrect().length > 0 ? 'inline-block' : 'none';
+  }
+
+  // --- Event listeners ---
+  document.getElementById('action-btn').addEventListener('click', () => {
+    if (!checked) checkAnswers();
+    else loadBatch();
+  });
+
+  document.getElementById('clear-btn').addEventListener('click', () => {
+    if (confirm('Obrisati svu istoriju tačnih odgovora?')) {
+      clearHistory();
+      loadBatch();
+    }
+  });
+
+  // --- Start ---
+  loadBatch();
+})();
+</script>
+</body>
+</html>
