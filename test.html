@@ -545,7 +545,8 @@
       if (allOk) {
         markCorrect(id);
       } else {
-        row._tipBtn.setAttribute('data-tip', wrong.join(' / '));
+        const tipText = wrong.join(' / ') + '  —  ' + q.padez + ' · ' + q.broj;
+        row._tipBtn.setAttribute('data-tip', tipText);
         row._tipBtn.classList.add('show');
       }
     });
